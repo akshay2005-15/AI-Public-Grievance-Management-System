@@ -1,0 +1,59 @@
+
+{% extends "base.html" %}
+
+{% block title %}Login | CivicAI{% endblock %}
+
+{% block content %}
+
+<div class="auth-card mx-auto">
+
+    <h2 class="fw-bold">Welcome back</h2>
+
+    <p class="text-muted">
+        Sign in to continue to CivicAI.
+    </p>
+
+    <form method="post">
+
+        <label class="form-label">Email</label>
+
+        <input
+            class="form-control mb-3"
+            type="email"
+            name="email"
+            placeholder="Enter your email"
+            required
+        >
+
+        <label class="form-label">Password</label>
+
+        <input
+            class="form-control mb-4"
+            type="password"
+            name="password"
+            placeholder="Enter your password"
+            required
+        >
+
+        <button type="submit" class="btn btn-primary w-100">
+            Login
+        </button>
+
+    </form>
+
+    <p class="small text-muted mt-3 mb-0">
+        New citizen?
+        <a href="{{ url_for('register') }}">
+            Create an account
+        </a>
+    </p>
+
+    <hr>
+
+    <p class="small text-muted mb-0">
+        Administrator access is restricted to authorized users.
+    </p>
+
+</div>
+
+{% endblock %}

@@ -1,0 +1,15 @@
+@"
+venv/
+.venv/
+__pycache__/
+*.py[cod]
+grievance.db
+*.sqlite3
+*.db
+.env
+.env.*
+.vscode/
+*.log
+.DS_Store
+dataset/complaints_backup.csv
+"@ | Set-Content -Path .gitignore

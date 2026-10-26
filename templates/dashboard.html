@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block title %}My Complaints | CivicAI{% endblock %}
+{% block content %}
+<div class="d-flex justify-content-between align-items-center flex-wrap gap-2 mb-4">
+  <div><span class="eyebrow">CITIZEN PORTAL</span><h2 class="fw-bold mt-1">Hello, {{ session.get('name') }}</h2><p class="text-muted mb-0">Track the progress of your submitted complaints.</p></div>
+  <a class="btn btn-primary" href="{{ url_for('submit') }}">+ New Complaint</a>
+</div>
+{% if complaints %}
+<div class="table-responsive content-card p-0"><table class="table align-middle mb-0">
+  <thead><tr><th>ID</th><th>Complaint</th><th>Category</th><th>Department</th><th>Priority</th><th>Status</th><th>Date</th></tr></thead>
+  <tbody>{% for c in complaints %}<tr>
+    <td>#{{ c.id }}</td><td><b>{{ c.title }}</b><div class="small text-muted">{{ c.description }}</div></td>
+    <td>{{ c.category }}</td><td>{{ c.department }}</td>
+    <td><span class="priority priority-{{ c.priority|lower }}">{{ c.priority }}</span></td>
+    <td><span class="status">{{ c.status }}</span></td><td class="small text-muted">{{ c.created_at }}</td>
+  </tr>{% endfor %}</tbody>
+</table></div>
+{% else %}
+<div class="empty-state"><div class="feature-icon">📬</div><h5>No complaints yet</h5><p class="text-muted">Your submitted complaints will appear here.</p><a class="btn btn-primary" href="{{ url_for('submit') }}">Submit your first complaint</a></div>
+{% endif %}
+{% endblock %}

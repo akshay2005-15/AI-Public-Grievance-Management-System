@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% block title %}CivicAI | Public Grievance Portal{% endblock %}
+{% block content %}
+<section class="hero p-4 p-md-5 rounded-4 mb-4">
+  <div class="row align-items-center">
+    <div class="col-lg-8">
+      <span class="eyebrow">SMARTER CIVIC SERVICES</span>
+      <h1 class="display-5 fw-bold mt-2">Your voice can make<br>your community better.</h1>
+      <p class="lead mt-3">Submit civic complaints, let machine learning suggest the right category and department, and track progress in one place.</p>
+      <div class="d-flex gap-2 flex-wrap mt-4">
+        <a class="btn btn-primary btn-lg" href="{{ url_for('register') }}">Get Started</a>
+        <a class="btn btn-outline-secondary btn-lg" href="{{ url_for('login') }}">Sign In</a>
+      </div>
+    </div>
+    <div class="col-lg-4 d-none d-lg-block text-center">
+      <div class="hero-icon">🏙️</div>
+      <div class="small text-muted">Report · Classify · Resolve</div>
+    </div>
+  </div>
+</section>
+<div class="row g-3">
+  <div class="col-md-4"><div class="feature-card h-100"><div class="feature-icon">🤖</div><h5>AI Classification</h5><p>Automatically categorizes complaints using TF-IDF and Logistic Regression.</p></div></div>
+  <div class="col-md-4"><div class="feature-card h-100"><div class="feature-icon">🏢</div><h5>Department Routing</h5><p>Suggests the department responsible for the selected complaint category.</p></div></div>
+  <div class="col-md-4"><div class="feature-card h-100"><div class="feature-icon">📍</div><h5>Status Tracking</h5><p>Citizens can view complaint status as administrators update progress.</p></div></div>
+</div>
+{% endblock %}

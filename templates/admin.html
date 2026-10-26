@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% block title %}Admin Dashboard | CivicAI{% endblock %}
+{% block content %}
+<div class="mb-4"><span class="eyebrow">ADMINISTRATION</span><h2 class="fw-bold mt-1">Complaint management</h2><p class="text-muted">Review complaints, check AI suggestions and update their status.</p></div>
+<div class="row g-3 mb-4">
+  <div class="col-md-4"><div class="stat-card"><span>Total complaints</span><strong>{{ total }}</strong></div></div>
+  <div class="col-md-4"><div class="stat-card"><span>Pending / active</span><strong>{{ pending }}</strong></div></div>
+  <div class="col-md-4"><div class="stat-card"><span>Resolved</span><strong>{{ resolved }}</strong></div></div>
+</div>
+{% if complaints %}
+<div class="table-responsive content-card p-0"><table class="table align-middle mb-0">
+<thead><tr><th>ID / Citizen</th><th>Complaint</th><th>AI category</th><th>Department</th><th>Priority</th><th>Update status</th></tr></thead>
+<tbody>{% for c in complaints %}<tr>
+<td><b>#{{ c.id }} · {{ c.citizen_name }}</b><div class="small text-muted">{{ c.citizen_email }}</div></td>
+<td><b>{{ c.title }}</b><div class="small text-muted">{{ c.description }}</div></td>
+<td>{{ c.category }}</td><td>{{ c.department }}</td>
+<td><span class="priority priority-{{ c.priority|lower }}">{{ c.priority }}</span></td>
+<td><form method="post" action="{{ url_for('update_status', complaint_id=c.id) }}" class="d-flex gap-2">
+<select class="form-select form-select-sm" name="status">
+{% for s in ['Submitted','Assigned','In Progress','Resolved'] %}<option value="{{ s }}" {% if c.status == s %}selected{% endif %}>{{ s }}</option>{% endfor %}
+</select><button class="btn btn-sm btn-primary">Save</button></form><div class="small text-muted mt-1">Current: {{ c.status }}</div></td>
+</tr>{% endfor %}</tbody></table></div>
+{% else %}
+<div class="empty-state"><h5>No complaints submitted yet</h5><p class="text-muted">New citizen complaints will appear here.</p></div>
+{% endif %}
+{% endblock %}

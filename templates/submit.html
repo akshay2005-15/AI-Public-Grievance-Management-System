@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block title %}Submit Complaint | CivicAI{% endblock %}
+{% block content %}
+<div class="page-heading"><span class="eyebrow">CITIZEN PORTAL</span><h2 class="fw-bold mt-2">Submit a complaint</h2><p class="text-muted">Describe the civic issue clearly. AI will suggest a category and department.</p></div>
+<div class="content-card">
+  <form method="post">
+    <label class="form-label fw-semibold">Complaint title</label>
+    <input class="form-control mb-3" name="title" placeholder="Example: Pothole near school entrance" minlength="4" required>
+    <label class="form-label fw-semibold">Complaint description</label>
+    <textarea class="form-control mb-3" name="description" rows="6" minlength="10" placeholder="Explain the issue, where it is happening and how it affects people..." required></textarea>
+    <div class="alert alert-info small">Please do not include sensitive personal information. This prototype classifies English text complaints only.</div>
+    <button class="btn btn-primary">Submit Complaint</button>
+    <a class="btn btn-outline-secondary ms-2" href="{{ url_for('dashboard') }}">Cancel</a>
+  </form>
+</div>
+{% endblock %}
